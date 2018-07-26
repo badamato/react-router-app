@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
-import './App.css';
 
-import {Route} from 'react-router-dom';
+import {Route, Link} from 'react-router-dom';
 import Navbar from './Navbar';
 
 
@@ -11,10 +10,11 @@ class App extends Component {
       <div className="App">
         <Navbar />
 
-        <Route path="/" exact={true} component={Landing} />
+        <Route path="/" exact component={Landing} />
         <Route path="/home" component={Home} />
         <Route path="/about" component={About} />
         <Route path="/bruce" component={Bruce} />
+        <Route path="/bruce/:bruce" component={anotherBruce} />
       </div>
     );
   }
@@ -37,10 +37,31 @@ const About = (props) => {
   );
 }
 
+const formatAsLink = (toUrl, name) => {
+  return <li><Link to={toUrl}>{name}</Link></li>
+}
+
 const Bruce = (props) => {
+  let allBruce = [
+    'Brock',
+    'Gaston',
+    'Gus'
+  ];
   return (
     <div>
       <h1>I LOVE YOU BRUCE!</h1>
+      <ul>
+      {allBruce.map(bruce => formatAsLink(`${props.match.url}/${bruce}`, bruce))}
+      </ul>
+    </div>
+  );
+}
+
+const anotherBruce = (props) => {
+  return (
+    <div>
+      <h1>A specific Bruce!</h1>
+      <h2>{props.match.params.bruce}</h2>
     </div>
   );
 }
