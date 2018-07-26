@@ -1,20 +1,15 @@
 import React, { Component } from 'react';
 import './App.css';
 
-import {Route, Link} from 'react-router-dom';
-
+import {Route} from 'react-router-dom';
+import Navbar from './Navbar';
 
 
 class App extends Component {
   render() {
     return (
       <div className="App">
-        <ul>
-          <li><Link to="/">Landing</Link></li>
-          <li><Link to="/home">Home</Link></li>
-          <li><Link to="/about">About</Link></li>
-          <li><Link to="/bruce">Bruce</Link></li>
-        </ul>
+        <Navbar />
 
         <Route path="/" exact={true} component={Landing} />
         <Route path="/home" component={Home} />
@@ -24,6 +19,7 @@ class App extends Component {
     );
   }
 }
+
 
 const Home = (props) => {
   return (
